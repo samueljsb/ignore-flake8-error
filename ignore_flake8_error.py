@@ -33,7 +33,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     print(f'  found errors in {len(results)} files', file=sys.stderr)
 
     for filename, linenos in results.items():
-        print('=> adding comments to ', filename, file=sys.stderr)
+        print('=> adding comments to', filename, file=sys.stderr)
         with open(filename) as f:
             lines = f.readlines()
 
