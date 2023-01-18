@@ -72,7 +72,8 @@ foo = 'bar'
 def baz(
     a: int,
     b: int,
-) -> str: ...
+) -> str:
+    ...
 
 # a multi-line string on line 11
 s = '''
