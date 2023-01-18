@@ -27,7 +27,7 @@ def _run_flake8(code: str, filenames: Sequence[str]) -> dict[str, list[int]]:
     # extract filenames and line numbers
     results: dict[str, list[int]] = defaultdict(list)
     for line in proc.stdout.splitlines():
-        filename_, lineno_ = line.split()
+        filename_, lineno_ = line.rsplit(maxsplit=1)
         results[filename_].append(int(lineno_))
 
     return results
