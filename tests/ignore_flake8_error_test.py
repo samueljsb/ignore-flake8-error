@@ -75,7 +75,7 @@ def baz(
 ) -> str:
     ...
 
-# a multi-line string on line 11
+# a multi-line string on line 12
 s = '''
 hello there
 '''
