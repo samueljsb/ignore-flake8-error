@@ -89,7 +89,8 @@ foo = 'bar'  # noqa: ABC123
 def baz(  # noqa: ABC123
     a: int,
     b: int,
-) -> str: ...
+) -> str:
+    ...
 
 # a multi-line string on line 11
 s = '''
