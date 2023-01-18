@@ -14,7 +14,8 @@ from tokenize_rt import tokens_to_src
 def _run_flake8(code: str, filenames: Sequence[str]) -> dict[str, list[int]]:
     proc = subprocess.run(
         (
-            'flake8', '--select', code,
+            sys.executable, '-mflake8',
+            '--select', code,
             '--format', '%(path)s %(row)s',
             *filenames,
         ),
