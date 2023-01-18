@@ -92,7 +92,7 @@ def baz(  # noqa: ABC123
 ) -> str:
     ...
 
-# a multi-line string on line 11
+# a multi-line string on line 12
 s = '''
 hello there
 '''  # noqa: ABC123
