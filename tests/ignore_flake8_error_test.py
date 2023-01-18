@@ -81,9 +81,7 @@ hello there
 '''
 """
 
-    print(src)
-
-    assert _add_comments(src, [2, 5, 1], 'ABC123') == """\
+    assert _add_comments(src, [2, 5, 12], 'ABC123') == """\
 # a single-line statement on line 2
 foo = 'bar'  # noqa: ABC123
 
