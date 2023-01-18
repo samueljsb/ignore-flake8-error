@@ -74,6 +74,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     violations = _run_flake8(args.code, args.filenames)
 
     if not violations:
+        print('no violations found', file=sys.stderr)
         return 0
 
     print(f'found violations in {len(violations)} files', file=sys.stderr)
