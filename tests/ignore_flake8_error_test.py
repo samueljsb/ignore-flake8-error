@@ -62,7 +62,6 @@ def test_add_code_to_comment(comment, expected):
     assert _add_code_to_comment(comment, 'ABC123') == expected
 
 
-@pytest.mark.xfail
 def test_add_comments():
     src = """\
 # a single-line statement on line 2

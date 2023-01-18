@@ -6,6 +6,7 @@ import sys
 from collections import defaultdict
 from typing import Sequence
 
+from tokenize_rt import reversed_enumerate
 from tokenize_rt import src_to_tokens
 from tokenize_rt import Token
 from tokenize_rt import tokens_to_src
@@ -42,27 +43,25 @@ def _add_code_to_comment(comment: str, code: str) -> str:
 
 
 def _add_comments(src: str, linenos: list[int], code: str) -> str:
-    lines = src.splitlines(keepends=True)
+    tokens = src_to_tokens(src)
+    lines = set(linenos)
 
-    for lineno in linenos:
-        line = lines[lineno - 1]
-        tokens = src_to_tokens(line)
+    for idx, token in reversed_enumerate(tokens):
+        if token.line not in lines:
+            continue
+        if not token.src.strip():
+            continue
 
-        if tokens[-3].name == 'COMMENT':
-            old_comment = tokens[-3].src
-            new_comment = _add_code_to_comment(old_comment, code)
-            tokens[-3] = tokens[-3]._replace(src=new_comment)
+        if token.name == 'COMMENT':
+            new_comment = _add_code_to_comment(token.src, code)
+            tokens[idx] = tokens[idx]._replace(src=new_comment)
         else:
-            tokens = [
-                *tokens[:-2],
-                Token('UNIMPORTANT_WS', '  '),
-                Token('COMMENT', f'# noqa: {code}'),
-                *tokens[-2:],
-            ]
+            tokens.insert(idx+1, Token('COMMENT', f'# noqa: {code}'))
+            tokens.insert(idx+1, Token('UNIMPORTANT_WS', '  '))
 
-        lines[lineno - 1] = tokens_to_src(tokens)
+        lines.remove(token.line)
 
-    return ''.join(lines)
+    return tokens_to_src(tokens)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
