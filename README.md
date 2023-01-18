@@ -10,10 +10,11 @@ Install with pip:
 python -m pip install ignore-flake8-error
 ```
 
-Call the tool with an error code you want to add ignore comments for and the paths tothe files:
+Call the tool with an error code you want to add ignore comments for and the
+paths to the files:
 
 ```shell
-ignore-flake8-error F401 path/to/files/ path/to/more/files/s
+ignore-flake8-error F401 path/to/files/ path/to/more/files/
 ```
 
 ## Rationale
