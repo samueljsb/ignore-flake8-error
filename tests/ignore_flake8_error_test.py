@@ -7,7 +7,7 @@ from ignore_flake8_error import _add_comments
 from ignore_flake8_error import main
 
 
-def test_main(tmp_path):
+def test_main(tmp_path, capsys):
     python_module = tmp_path / 't.py'
     python_module.write_text("""\
 import sys
@@ -26,8 +26,16 @@ from os import *  # noqa: F401,F403
 from pathlib import *  # noqa: F401,F403  # additional comment
 """
 
+    captured = capsys.readouterr()
+    assert captured.err == f"""\
+-> running flake8
+found violations in 1 files
+-> adding noqa comments
+{python_module}
+"""
 
-def test_main_no_violations(tmp_path):
+
+def test_main_no_violations(tmp_path, capsys):
     src = """\
 def foo():
     print('hello there')
@@ -39,8 +47,13 @@ def foo():
     ret = main(('F401', str(python_module)))
 
     assert ret == 0
-
     assert python_module.read_text() == src
+
+    captured = capsys.readouterr()
+    assert captured.err == """\
+-> running flake8
+no violations found
+"""
 
 
 @pytest.mark.parametrize(
