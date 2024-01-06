@@ -1,3 +1,7 @@
+This tool is no longer maintained. Its functionality is included in the [`silence-lint-error`](https://pypi.org/project/silence-lint-error/) package.
+
+---
+
 # ignore-flake8-error
 
 Add `noqa` comments to ignore every occurrence of a flake8 error.

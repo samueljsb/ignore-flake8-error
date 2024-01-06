@@ -4,12 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## Unreleased
+## 0.2.1 - 2024-01-06
 
-### Added
-
-- This CHANGELOG file to serve as an evolving example of a standardized open
-  source project CHANGELOG.
+This tool is no longer maintained. Its functionality is included in the [`silence-lint-error`](https://pypi.org/project/silence-lint-error/) package.
 
 ## 0.2.0 - 2023-04-14
 
